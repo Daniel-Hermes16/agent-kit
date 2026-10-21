@@ -1,0 +1,29 @@
+---
+name: skill-ship
+description: "Ship-the-skill rule: always work locally in your repo."
+version: 1.0.0
+author: Daniel-Hermes16, Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [skill, ship, local, repo, rule]
+---
+
+# Skill Ship — Always Work Locally in Your Repo
+
+## When to Use
+
+Use this rule whenever the user asks you to add a skill to your agent kit, modify an existing one, or ship any skill-related change to GitHub. This triggers **local-first workflow**.
+
+## What to Do
+
+1. **Write via `write_file`** to the skill directory in your repo (`~/.hermes/skills/`). Never use `skill_manage(action='create')`.
+2. **Commit and push** the change yourself. This rule applies to all skill work.
+3. **Verify** the skill is present with `skills_list()` or `skill_view(name='<skill>')` in a fresh session.
+
+## What Not to Do
+
+- **Never** use `skill_manage(action='create')` — it writes to `~/.hermes/skills/` and bypasses the repo entirely.
+- **Never** skip commit/push — the user's agent kit must stay in sync with the repo.
+- **Never** assume the skill is available after writing — always verify in a fresh session.
